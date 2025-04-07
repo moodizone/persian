@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 interface AccordionContextType {
@@ -14,7 +15,7 @@ function Accordion({ children }: React.PropsWithChildren) {
 
   return (
     <AccordionContext.Provider value={{ activeIndex, setActiveIndex }}>
-      {children}
+      <div className="flex flex-col gap-2 md:gap-4">{children}</div>
     </AccordionContext.Provider>
   );
 }
