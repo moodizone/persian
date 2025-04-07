@@ -1,13 +1,42 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 300;
+  src: url("../../public/fonts/IRANSansWeb_Light_FaNum.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../public/fonts/IRANSansWeb_FaNum.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 500;
+  src: url("../../public/fonts/IRANSansWeb_Medium_FaNum.woff2") format("woff2");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../public/fonts/IRANSansWeb_Bold_FaNum.woff") format("woff2");
+}
+
 @theme {
   --color-*: initial;
   --color-purple-heart: #7a3de2;
   --color-alabaster: #fcfcfc;
   --color-mine-shaft: #303030;
+  --color-cod-gray: #141414;
 }
 
 body {
   background-color: var(--color-alabaster);
   color: var(--color-mine-shaft);
+  line-height: 1.8;
+  font-family: IRANSans, "sans-serif";
+  font-weight: 400;
 }
