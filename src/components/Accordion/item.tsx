@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 
 import { useAccordion } from "./index";
-import Add from "@/components/SVGR/add";
+import Add from "@/components/SVGR/Add";
 
 interface AccordionItemProps {
   index: number;

@@ -13,7 +13,7 @@ function Card({
     <div
       {...others}
       className={twMerge(
-        "bg-white max-w-[1200px] mx-auto px-4 md:px-9 py-8 md:py-10 rounded-lg border border-mercury",
+        "bg-white w-full max-w-[1200px] mx-auto px-4 md:px-9 py-8 md:py-10 rounded-lg border border-mercury",
         className
       )}
     >
