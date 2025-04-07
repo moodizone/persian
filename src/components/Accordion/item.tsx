@@ -24,7 +24,7 @@ function AccordionItem({
 
   return (
     <div className="px-4 py-2 md:px-5 md:py-4 rounded-lg border border-gallery">
-      <div className="flex justify-between" onClick={toggleAccordion}>
+      <div className="flex justify-between cursor-pointer" onClick={toggleAccordion}>
         <h3 className="text-cod-gray font-bold text-[12px] md:text-[16px]">{title}</h3>
         <Add />
       </div>

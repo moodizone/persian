@@ -37,7 +37,7 @@ function FAQ() {
     <div className="px-6 py-10 md:pt-20 md:px-10 bg-alabaster">
       <Card>
         <div className="flex flex-col gap-6 md:flex-row md:flex-nowrap">
-          <div className="grow-0 shrink-0 flex flex-col">
+          <div className="grow-0 shrink-1 flex flex-col">
             <h2
               className="font-bold text-cod-gray text-[18px] text-center mb-2
       md:text-right md:text-[32px] md:leading-[1.5]"
