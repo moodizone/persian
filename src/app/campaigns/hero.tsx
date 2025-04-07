@@ -6,7 +6,7 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="max-w-[1200px] mx-auto flex flex-col-reverse md:flex-row md:flex-nowrap md:items-center px-6 md:px-10 py-4 md:min-h-[540px]">
+    <section className="bg-alabaster max-w-[1200px] mx-auto flex flex-col-reverse md:flex-row md:flex-nowrap md:items-center px-6 md:px-10 py-4 md:min-h-[540px]">
       <div className="flex flex-col items-center md:items-start">
         <h1 className="text-center md:text-right text-[18px] md:text-[24px] text-cod-gray font-bold mb-3 md:mb-4">
           {"کمپین‌های بازاریابی و تبلیغاتی"}
