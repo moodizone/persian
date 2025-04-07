@@ -34,7 +34,7 @@ const qs = [
 
 function FAQ() {
   return (
-    <div className="px-6 py-10 md:pt-20 md:px-10">
+    <section className="px-6 py-10 md:pt-20 md:px-10">
       <Card className="border-0 md:border">
         <div className="flex flex-col gap-6 md:flex-row md:flex-nowrap">
           <div className="grow-0 shrink-1 flex flex-col">
@@ -64,7 +64,7 @@ function FAQ() {
           </div>
         </div>
       </Card>
-    </div>
+    </section>
   );
 }
 

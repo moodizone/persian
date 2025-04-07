@@ -20,7 +20,7 @@ const options = [
 
 function Form() {
   return (
-    <div className="flex flex-col px-6 py-10 md:pt-15 md:pb-10">
+    <section className="flex flex-col px-6 py-10 md:pt-15 md:pb-10">
       <div className="max-w-[1200px] mx-auto flex flex-col">
         <h2 className="font-bold text-cod-gray text-[18px] text-center mb-4 d:text-[32px] md:leading-[1.5]">
           {"فرم دریافت مشاوره"}
@@ -76,7 +76,7 @@ function Form() {
           </Button>
         </form>
       </Card>
-    </div>
+    </section>
   );
 }
 
