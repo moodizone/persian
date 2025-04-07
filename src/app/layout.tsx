@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa">
+    <html lang="fa" dir="rtl">
       <body className=" bg-alabaster text-mine-shaft flex flex-col w-full h-full">
         <Header />
         <Content>{children}</Content>
