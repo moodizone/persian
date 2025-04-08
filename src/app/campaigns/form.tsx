@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 import Card from "@/components/Card";
@@ -33,7 +34,14 @@ function Form() {
         </h3>
       </div>
       <Card>
-        <form className="flex flex-col items-center" noValidate>
+        <form
+          className="flex flex-col items-center"
+          noValidate
+          onSubmit={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+          }}
+        >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full mb-10 md:mb-8">
             <div>
               <Label className="mb-2 md:mb-3">
@@ -71,7 +79,10 @@ function Form() {
             </Label>
             <Textarea placeholder="توضیحات (اختیاری)" rows={4} />
           </div>
-          <Button className="text-white w-full bg-mine-shaft rounded-lg md:rounded-2xl max-w-[380px] hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300">
+          <Button
+            type="submit"
+            className="text-white w-full bg-mine-shaft rounded-lg md:rounded-2xl max-w-[380px] hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300"
+          >
             {"ثبت درخواست"}
           </Button>
         </form>
