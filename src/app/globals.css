@@ -19,14 +19,15 @@
 
 @theme {
   --color-purple-heart: #7a3de2;
+  --color-meteorite: #43217c;
   --color-alabaster: #fcfcfc;
-  --color-concrete: #F9F9F9;
+  --color-concrete: #f9f9f9;
   --color-mine-shaft: #303030;
   --color-cod-gray: #141414;
   --color-gallery: #ececec;
-  --color-dove-gray: #6B6B6B;
-  --color-mercury: #E3E3E3;
-  --color-gray: #8A8A8A;
+  --color-dove-gray: #6b6b6b;
+  --color-mercury: #e3e3e3;
+  --color-gray: #8a8a8a;
   --color-scorpion: #595959;
 }
 
