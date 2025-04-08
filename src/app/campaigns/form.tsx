@@ -33,7 +33,6 @@ function Form() {
     register,
     control,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(formSchema) as Resolver<FormValues>,
@@ -53,8 +52,6 @@ function Form() {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log("Form data:", data);
   };
-  const serviceValue = watch("service"); // This will give you the live value of the "service" field
-  console.log(serviceValue);
 
   //================================
   // Render
