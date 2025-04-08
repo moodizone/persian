@@ -12,19 +12,21 @@ export interface OptionType<T> {
 interface Props<T> {
   options?: OptionType<T>[];
   name: string;
+  value: T[];
+  onChange: (value: T[]) => void;
 }
 
 export default function CheckboxGroup<T extends string>({
   options = [],
   name,
+  value,
+  onChange,
 }: Props<T>) {
-  const [selected, setSelected] = React.useState<T[]>([]);
-
   const toggleOption = (option: T) => {
-    setSelected((prev) =>
-      prev.includes(option)
-        ? prev.filter((o) => o !== option)
-        : [...prev, option]
+    onChange(
+      value.includes(option)
+        ? value.filter((o) => o !== option)
+        : [...value, option]
     );
   };
 
@@ -35,7 +37,7 @@ export default function CheckboxGroup<T extends string>({
       className="grid grid-cols-1 sm:grid-cols-2 md:flex md:flex-row md:flex-wrap gap-4"
     >
       {options.map((option) => {
-        const isChecked = selected.includes(option.value);
+        const isChecked = value.includes(option.value);
 
         return (
           <div

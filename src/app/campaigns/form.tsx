@@ -1,5 +1,8 @@
 "use client";
 import * as React from "react";
+import { InferType } from "yup";
+import { Controller, Resolver, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import Card from "@/components/Card";
 import Button from "@/components/Form/button";
@@ -10,6 +13,9 @@ import Envelop from "@/components/SVGR/Envelop";
 import Phone from "@/components/SVGR/Phone";
 import Textarea from "@/components/Form/textarea";
 import CheckboxGroup from "@/components/Form/checkbox";
+import { formSchema } from "@/validations/campaings";
+
+type FormValues = InferType<typeof formSchema>;
 
 const options = [
   { value: "SEO", label: "خدمات سئو " },
@@ -20,6 +26,39 @@ const options = [
 ];
 
 function Form() {
+  //================================
+  // Init
+  //================================
+  const {
+    register,
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(formSchema) as Resolver<FormValues>,
+    mode: "onTouched",
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      service: [],
+      message: "",
+    },
+  });
+
+  //================================
+  // Handlers
+  //================================
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log("Form data:", data);
+  };
+  const serviceValue = watch("service"); // This will give you the live value of the "service" field
+  console.log(serviceValue);
+
+  //================================
+  // Render
+  //================================
   return (
     <section className="bg-concrete flex flex-col px-6 py-10 md:pt-15 md:pb-10">
       <div className="max-w-[1200px] mx-auto flex flex-col">
@@ -37,10 +76,7 @@ function Form() {
         <form
           className="flex flex-col items-center"
           noValidate
-          onSubmit={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-          }}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full mb-10 md:mb-8">
             <div>
@@ -48,9 +84,11 @@ function Form() {
                 {"نام و نام خانوادگی خود را وارد کنید"}
               </Label>
               <Input
+                {...register("name")}
                 placeholder="نام و نام خانوادگی"
                 type="text"
                 icon={<User />}
+                error={errors.name?.message}
               />
             </div>
             <div>
@@ -58,26 +96,55 @@ function Form() {
                 {"آدرس ایمیل خود را وارد کنید"}
               </Label>
               <Input
+                {...register("email")}
                 placeholder="email address@mail.com"
                 type="text"
                 icon={<Envelop />}
+                error={errors.email?.message}
               />
             </div>
             <div>
               <Label className="mb-2 md:mb-3">
                 {"شماره تماس خود را وارد کنید"}
               </Label>
-              <Input placeholder="021-123456789" type="text" icon={<Phone />} />
+              <Input
+                placeholder="021-123456789"
+                type="text"
+                icon={<Phone />}
+                {...register("phone")}
+                error={errors.phone?.message}
+              />
             </div>
           </div>
           <div className="w-full mb-10 md:mb-8">
-            <CheckboxGroup options={options} name="service" />
+            <Controller
+              control={control}
+              name="service"
+              render={({ field }) => (
+                <CheckboxGroup
+                  name="service"
+                  options={options}
+                  value={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            {errors.service && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.service.message}
+              </p>
+            )}
           </div>
           <div className="flex flex-col w-full mb-4">
             <Label className="mb-2 md:mb-3">
               {"در مورد درخواست خود برای ما بنویسید."}
             </Label>
-            <Textarea placeholder="توضیحات (اختیاری)" rows={4} />
+            <Textarea
+              placeholder="توضیحات (اختیاری)"
+              rows={4}
+              {...register("message")}
+              error={errors.message?.message}
+            />
           </div>
           <Button
             type="submit"
