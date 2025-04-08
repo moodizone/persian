@@ -1,5 +1,7 @@
+"use client";
 import * as React from "react";
 import { StaticImageData } from "next/image";
+import { Keyboard, Autoplay } from "swiper/modules";
 
 import Item from "@/app/campaigns/slider/item";
 import hand from "../../../../public/img/hand.png";
@@ -10,6 +12,8 @@ import strategy from "../../../../public/img/strategy.png";
 import team from "../../../../public/img/team.png";
 import budget from "../../../../public/img/budget.png";
 import growth from "../../../../public/img/growth.png";
+import "swiper/css";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export interface CardType {
   icon: StaticImageData;
@@ -69,7 +73,7 @@ const items: CardType[] = [
       "اگر نگران عدم کسب نتیجه هستید، پرشین سایت با برنامه‌ریزی دقیق به شما اطمینان می‌دهد که از بودجه خود به بهترین نحو استفاده خواهید کرد.",
   },
   {
-    id: 7,
+    id: 8,
     icon: growth,
     title: "نداشتن برنامه برای رشد",
     description:
@@ -83,16 +87,32 @@ function Slider() {
       <h3 className="px-6 text-[18px] md:text-[20px] font-bold text-center text-white mb-6">
         {"موانع رایج در دریافت خدمات تولید محتوا برای کسب‌وکارها"}
       </h3>
-      <div className="w-full max-w-[1200px] mx-auto h-[220px] flex flex-nowrap gap-4 md:gap-6">
-        {items.map((item) => (
-          <Item
-            description={item.description}
-            icon={item.icon}
-            title={item.title}
-            key={item.id}
-            id={item.id}
-          />
-        ))}
+      <div className="w-full max-w-[1200px] mx-auto h-[220px]">
+        <Swiper
+          spaceBetween={24}
+          slidesPerView="auto"
+          width={260}
+          className="w-full overflow-visible"
+          loop
+          modules={[Keyboard, Autoplay]}
+          keyboard={{ enabled: true }}
+          autoplay={{
+            delay: 3000,
+            pauseOnMouseEnter: true,
+            disableOnInteraction: false,
+          }}
+        >
+          {items.map((item) => (
+            <SwiperSlide key={item.id} className="!w-[260px]">
+              <Item
+                description={item.description}
+                icon={item.icon}
+                title={item.title}
+                id={item.id}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className="absolute  top-10 md:top-[60px] left-0 right-0 h-[220px] md:h-[240px] bg-linear-to-b from-purple-heart to-meteorite z-[-1]" />
     </div>
