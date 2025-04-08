@@ -16,6 +16,13 @@ import CheckboxGroup from "@/components/Form/checkbox";
 import { formSchema } from "@/validations/campaings";
 
 type FormValues = InferType<typeof formSchema>;
+const defaultValues: FormValues = {
+  name: "",
+  email: "",
+  phone: "",
+  service: [],
+  message: "",
+};
 
 const options = [
   { value: "SEO", label: "خدمات سئو " },
@@ -29,6 +36,10 @@ function Form() {
   //================================
   // Init
   //================================
+  const nameId = React.useId();
+  const emailId = React.useId();
+  const phoneId = React.useId();
+  const messageId = React.useId();
   const {
     register,
     control,
@@ -37,13 +48,7 @@ function Form() {
   } = useForm<FormValues>({
     resolver: yupResolver(formSchema) as Resolver<FormValues>,
     mode: "onTouched",
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      service: [],
-      message: "",
-    },
+    defaultValues,
   });
 
   //================================
@@ -77,38 +82,44 @@ function Form() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full mb-10 md:mb-8">
             <div>
-              <Label className="mb-2 md:mb-3">
+              <Label htmlFor={nameId} className="mb-2 md:mb-3">
                 {"نام و نام خانوادگی خود را وارد کنید"}
               </Label>
               <Input
                 {...register("name")}
+                id={nameId}
                 placeholder="نام و نام خانوادگی"
                 type="text"
+                inputMode="text"
                 icon={<User />}
                 error={errors.name?.message}
               />
             </div>
             <div>
-              <Label className="mb-2 md:mb-3">
+              <Label htmlFor={emailId} className="mb-2 md:mb-3">
                 {"آدرس ایمیل خود را وارد کنید"}
               </Label>
               <Input
                 {...register("email")}
+                id={emailId}
+                inputMode="email"
                 placeholder="email address@mail.com"
-                type="text"
+                type="email"
                 icon={<Envelop />}
                 error={errors.email?.message}
               />
             </div>
             <div>
-              <Label className="mb-2 md:mb-3">
+              <Label htmlFor={phoneId} className="mb-2 md:mb-3">
                 {"شماره تماس خود را وارد کنید"}
               </Label>
               <Input
+                {...register("phone")}
+                id={phoneId}
+                inputMode="tel"
                 placeholder="021-123456789"
                 type="text"
                 icon={<Phone />}
-                {...register("phone")}
                 error={errors.phone?.message}
               />
             </div>
@@ -133,13 +144,15 @@ function Form() {
             )}
           </div>
           <div className="flex flex-col w-full mb-4">
-            <Label className="mb-2 md:mb-3">
+            <Label htmlFor={messageId} className="mb-2 md:mb-3">
               {"در مورد درخواست خود برای ما بنویسید."}
             </Label>
             <Textarea
+              {...register("message")}
+              id={messageId}
+              inputMode="text"
               placeholder="توضیحات (اختیاری)"
               rows={4}
-              {...register("message")}
               error={errors.message?.message}
             />
           </div>
