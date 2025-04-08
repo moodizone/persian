@@ -94,6 +94,7 @@ function Slider() {
           width={260}
           className="w-full overflow-visible"
           loop
+          centeredSlides={false}
           modules={[Keyboard, Autoplay]}
           keyboard={{ enabled: true }}
           autoplay={{
